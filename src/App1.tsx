@@ -5,6 +5,9 @@ import {Counter} from './Counter';
 import {Hello} from './Hello';
 import {StatelessCounter} from './StatelessCounter';
 
+// var
+//  const /let
+//use arrows function when passing functions
 export function App1() {
     const [pageName, setPageName] = useState('Page1');
     const [appScopeCount, setAppScopeCount] = useState(5);
@@ -17,11 +20,11 @@ export function App1() {
 
     return <div>
         <div style={{display: 'flex'}}>
-            <button onClick={() => setPageName('Page1')}>Page 1</button>
-            <button onClick={() => setPageName('Page2')}>Page 2</button>
-            <button onClick={() => setPageName('Page3')}>Page 3</button>
-            <button onClick={() => setPageName('Page4')}>Page 4</button>
-            <button onClick={() => setPageName('Page6')}>Page 6</button>
+            <button onClick={() => setPageName('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button>
+            <button onClick={() => setPageName('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
+            <button onClick={() => setPageName('Page3')} style={{color: pageName === 'Page3' ? 'blue' : ''}}>Page 3</button>
+            <button onClick={() => setPageName('Page4')} style={{color: pageName === 'Page4' ? 'blue' : ''}}>Page 4</button>
+            <button onClick={() => setPageName('Page6')} style={{color: pageName === 'Page6' ? 'blue' : ''}}>Page 6</button>
         </div>
 
         {pageName === 'Page1' && <Page1/>}
