@@ -8,20 +8,26 @@ export function App1() {
     const [pageName, setPageName] = useState('Page1');
 
 
-    function p1() {
-        setPageName('Page1');
-    }
-
-    function p2() {
-        setPageName('Page2');
-    }
+    // function p1() {
+    //     setPageName('Page1');
+    // }
+    //
+    // function p2() {
+    //     setPageName('Page2');
+    // }
 
     return <div>
         <div style={{display: 'flex'}}>
-            <button onClick={p1}>Page 1</button>
-            <button onClick={p2}>Page 2</button>
+            <button onClick={() => setPageName('Page1')}>Page 1</button>
+            <button onClick={() => setPageName('Page2')}>Page 2</button>
         </div>
-        {pageName === 'Page1' ? <Page1/> : <Page2/>}
+
+        {/*{pageName === 'Page1' ? <Page1/> : <Page2/>}*/}
+
+        {/*<hr/>*/}
+
+        {pageName === 'Page1' && <Page1/>}
+        {pageName === 'Page2' && <Page2/>}
     </div>;
 }
 
