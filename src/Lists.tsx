@@ -1,4 +1,4 @@
-export function Box({height, width}: { height: number, width: number }) {
+export function Lists({height, width}: { height: number, width: number }) {
     const xxx = `Foo ${height}`;
 
 
