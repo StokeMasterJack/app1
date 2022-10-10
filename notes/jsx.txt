@@ -1,0 +1,15 @@
+props must be camelcase
+
+React template (embed js expressions in jsx)
+{}
+
+
+Lists (tables): use the js map function
+     const a = [1, 2, 3, 7];
+     function mappingFunctionB(x: number) {
+         return <li>{x}</li>;
+     }
+
+     <div>
+        <ul>{a.map(mappingFunctionB)}</ul>
+     </div>

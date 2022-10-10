@@ -1,0 +1,28 @@
+
+props: args to the component
+
+state: data that is private to a component (it can passed down)
+
+context: it's like thread local. Call stack scope. Kind of like a global var, but not quite. User and Theme
+
+
+App
+    Page1
+    Page2
+    Page3
+        Panel1
+            MyWidget
+        Panel2
+
+Type-save paths (css, svg)
+
+Fragments
+
+export/import
+
+JSX expressions:  {}
+
+
+
+export const UserContext = createContext<User | null>(null);
+const user = useContext()

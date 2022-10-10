@@ -1,0 +1,23 @@
+date for UI
+    state
+    props
+    context
+
+Where to put state?
+
+Unidirectional
+
+App (state count , up)
+    Page6 props: count up
+        StatelessCounter props: count up
+            props.count
+            up()
+
+
+Only the component that owns the state can change the state
+    That means,  you may need to pass down a callback
+
+Prefer components that take props and have no state
+
+Your component should be idempotent (pure function)
+    No side effects

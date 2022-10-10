@@ -1,0 +1,28 @@
+Destructuring Arrays
+    const a = [1,2]
+    const x = a[0]
+    const y = a[1]
+
+    const [x,y] = [1,2]
+
+
+Destructuring Objects
+    const p = {fn:'Joe',ln:'Ford'}
+        const x = p.fn
+        const y = p.ln
+
+        const {x,y} = p
+
+Prop shortcut:
+    const width = 10
+    {backgroundColor: 'red', width, height: 10}
+
+String template (embed js expressions in a js string)):
+    const xxx = `Foo ${height}`;
+
+Arrow Functions:
+    const arrowFunction1 = (x: number, y: number) => {
+        return x + y;
+    };
+
+    const arrowFunction2 = (x: number, y: number) => x + y;

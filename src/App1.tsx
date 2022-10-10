@@ -1,17 +1,28 @@
+import {createContext} from 'react';
 import {useState} from 'react';
 import React from 'react';
 import {BlackjackVu} from './blackjack/BlackjackVu';
-import {Box} from './Box';
-import {Counter} from './Counter';
-import {Hello} from './Hello';
+import {ProvideTheme} from './ContextVars';
+import {Theme} from './ContextVars';
+import {Page1} from './Page1';
 import {StatelessCounter} from './StatelessCounter';
 
-type PageName = 'Page1' | 'Page2' | 'Page3' | 'Page4' | 'Page6' | 'Blackjack'
+export interface User {
+    readonly fn: string;
+    readonly ln: string;
+}
+
+export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'StatefulComponent' | 'Blackjack'
+
+export const UserContext = createContext<User | null>(null);
 
 //use arrows function when passing functions
 export function App1() {
     const [pageName, setPageName] = useState<PageName>('Page1');
     const [appScopeCount, setAppScopeCount] = useState(5);
+    const [user, setUser] = useState<User | null>({fn: 'dave', ln: 'ford'});
+    const [theme, setTheme] = useState<Theme | null>({color: 'blue'});
+
 
     const people = ['Joe', 'Sue', 'Ahmed'];
 
@@ -19,41 +30,39 @@ export function App1() {
         setAppScopeCount(appScopeCount + 1);
     };
 
-    return <div>
-        <div style={{display: 'flex'}}>
-            <MyButton pageName={'Page1'} selectedPageName={pageName} onPageClick={up}/>
-            <button onClick={() => setPageName('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button>
-            <button onClick={() => setPageName('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
-            <button onClick={() => setPageName('Page3')} style={{color: pageName === 'Page3' ? 'blue' : ''}}>Page 3</button>
-            <button onClick={() => setPageName('Page4')} style={{color: pageName === 'Page4' ? 'blue' : ''}}>Page 4</button>
-            <button onClick={() => setPageName('Page6')} style={{color: pageName === 'Page6' ? 'blue' : ''}}>Page 6</button>
-            <button onClick={() => setPageName('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
-        </div>
+    const onPageChange = (pageName: PageName) => {
+        setPageName(pageName);
+    };
 
-        {pageName === 'Page1' && <Page1/>}
-        {pageName === 'Page2' && <Page2/>}
-        {pageName === 'Page3' && <Page3 people={people}/>}
-        {pageName === 'Page4' && <Page4 people={people}/>}
-        {pageName === 'Page6' && <Page6 count={appScopeCount} up={up}/>}
-        {pageName === 'Blackjack' && <BlackjackVu />}
-    </div>;
+    return <UserContext.Provider value={user}>
+        <ProvideTheme value={theme}>
+            <div>
+                <div style={{display: 'flex'}}>
+                    <MyButton pageName={'Page1'} selectedPageName={pageName} onPageClick={() => onPageChange('Page1')}/>
+                    <button onClick={() => setPageName('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
+                    <button onClick={() => setPageName('Lists')} style={{color: pageName === 'Lists' ? 'blue' : ''}}>Page 3</button>
+                    <button onClick={() => setPageName('ListWithArrow')} style={{color: pageName === 'ListWithArrow' ? 'blue' : ''}}>Page 4</button>
+                    <button onClick={() => setPageName('StatefulComponent')} style={{color: pageName === 'StatefulComponent' ? 'blue' : ''}}>Page 6</button>
+                    <button onClick={() => setPageName('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
+                </div>
+
+                {pageName === 'Page1' && <Page1 name="Page2"/>}
+                {pageName === 'Page2' && <Page2 name="Lists"/>}
+                {pageName === 'Lists' && <Page3 people={people}/>}
+                {pageName === 'ListWithArrow' && <Page4 people={people}/>}
+                {pageName === 'StatefulComponent' && <Page6 count={appScopeCount} up={up}/>}
+                {pageName === 'Blackjack' && <BlackjackVu/>}
+            </div>
+        </ProvideTheme>
+    </UserContext.Provider>;
+
+
 }
 
-function Page1() {
-    return <div>
-        <h1>Props/State/Components/JSX Expressions</h1>
-        <Hello x={1}/>
-        <Hello x={3}/>
-        <Hello x={555}/>
-        <Counter/>
-        <Box height={10} width={10}/>
-    </div>;
-}
-
-function Page2() {
+function Page2({name}: { name: string }) {
 
     return <div>
-        <h1>Page 2</h1>
+        <h1>Page 2 {name})</h1>
         <p>Page 2</p>
     </div>;
 }
