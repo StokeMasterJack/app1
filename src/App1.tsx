@@ -1,15 +1,16 @@
 import {useState} from 'react';
 import React from 'react';
+import {BlackjackVu} from './blackjack/BlackjackVu';
 import {Box} from './Box';
 import {Counter} from './Counter';
 import {Hello} from './Hello';
 import {StatelessCounter} from './StatelessCounter';
 
-// var
-//  const /let
+type PageName = 'Page1' | 'Page2' | 'Page3' | 'Page4' | 'Page6' | 'Blackjack'
+
 //use arrows function when passing functions
 export function App1() {
-    const [pageName, setPageName] = useState('Page1');
+    const [pageName, setPageName] = useState<PageName>('Page1');
     const [appScopeCount, setAppScopeCount] = useState(5);
 
     const people = ['Joe', 'Sue', 'Ahmed'];
@@ -20,11 +21,13 @@ export function App1() {
 
     return <div>
         <div style={{display: 'flex'}}>
+            <MyButton pageName={'Page1'} selectedPageName={pageName} onPageClick={up}/>
             <button onClick={() => setPageName('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button>
             <button onClick={() => setPageName('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
             <button onClick={() => setPageName('Page3')} style={{color: pageName === 'Page3' ? 'blue' : ''}}>Page 3</button>
             <button onClick={() => setPageName('Page4')} style={{color: pageName === 'Page4' ? 'blue' : ''}}>Page 4</button>
             <button onClick={() => setPageName('Page6')} style={{color: pageName === 'Page6' ? 'blue' : ''}}>Page 6</button>
+            <button onClick={() => setPageName('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
         </div>
 
         {pageName === 'Page1' && <Page1/>}
@@ -32,6 +35,7 @@ export function App1() {
         {pageName === 'Page3' && <Page3 people={people}/>}
         {pageName === 'Page4' && <Page4 people={people}/>}
         {pageName === 'Page6' && <Page6 count={appScopeCount} up={up}/>}
+        {pageName === 'Blackjack' && <BlackjackVu />}
     </div>;
 }
 
@@ -91,6 +95,14 @@ const arrowFunction1 = (x: number, y: number) => {
 
 
 const arrowFunction2 = (x: number, y: number) => x + y;
+
+function MyButton(props: { pageName: PageName, selectedPageName: PageName, onPageClick: (pageName: PageName) => void }) {
+
+    const onPageClickInternal = () => {
+        props.onPageClick(props.pageName);
+    };
+    return <button onClick={onPageClickInternal} style={{color: props.pageName === props.selectedPageName ? 'blue' : ''}}>Page 1</button>;
+}
 
 
 

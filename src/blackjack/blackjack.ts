@@ -171,7 +171,7 @@ export class Game {
     readonly dh: Hand;
     readonly isStay: boolean;
 
-    private constructor({deck, ph, dh, isStay}: { deck: Deck, ph: Hand, dh: Hand, isStay: boolean }) {
+     constructor({deck, ph, dh, isStay}: { deck: Deck, ph: Hand, dh: Hand, isStay: boolean }) {
         this.deck = deck;
         this.ph = ph;
         this.dh = dh;
