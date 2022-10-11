@@ -36,3 +36,11 @@ export const Gr: FunctionComponent<DivProps> = (userProps: DivProps) => {
     const fixedProps = {...userProps, style: fixedStyles};
     return <div {...fixedProps} />;
 };
+
+export const HGap = () => {
+    return <div style={{width:'.5rem'}}></div>
+}
+
+export const VGap = () => {
+    return <div style={{height:'.5rem'}}></div>
+}

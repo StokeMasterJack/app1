@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {useEffect} from 'react';
 import {useState} from 'react';
+import {VGap} from '../RLayout';
+import {HGap} from '../RLayout';
 import {Ro} from '../RLayout';
 import {Co} from '../RLayout';
 
@@ -21,15 +23,16 @@ export interface Po {
 
 export function PosPage() {
 
-    console.log("PosPage render");
+    console.log('PosPage render');
 
     const [pos, setPos] = useState<Array<Po>>([]);
     const [vendorId, setVendorId] = useState<string>('');
+    const [status, setStatus] = useState<string>('');
 
     useEffect(() => {
 
         const getPos = async () => {
-            const axiosResponse = await axios.get<Array<Po>>(`/pos.json?vendorId=${vendorId}`);
+            const axiosResponse = await axios.get<Array<Po>>(`/pos.json?vendorId=${vendorId}&status=${status}`);
             const posResult = axiosResponse.data;
             setPos(posResult);
         };
@@ -44,18 +47,35 @@ export function PosPage() {
 
         getPos();
 
-    }, [vendorId]);
+    }, [vendorId, status]);
 
     const onVendorIdChange = (event: any) => {
         const value = event.target.value;
         setVendorId(value);
     };
 
+    const onStatusChange = (event: any) => {
+        const value = event.target.value;
+        setStatus(value);
+    };
+
     return <div>
+        <VGap/>
+        <VGap/>
         <Co>
             <Ro>
                 <div>Vendor id</div>
-                <input value={vendorId} onChange={onVendorIdChange}/></Ro>
+                <HGap/>
+                <input value={vendorId} onChange={onVendorIdChange}/>
+            </Ro>
+            <VGap/>
+            <Ro>
+                <div>Status</div>
+                <HGap/>
+                <input value={status} onChange={onStatusChange}/>
+            </Ro>
+            <VGap/>
+            <VGap/>
         </Co>
         <table>
             <tbody>
