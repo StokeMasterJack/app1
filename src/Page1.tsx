@@ -4,9 +4,9 @@ import {Box} from './Box';
 import {Counter} from './Counter';
 import {Hello} from './Hello';
 
-export function Page1({name}:{name:PageName}) {
+export function Page1() {
     return <div>
-        <h1>Props/State/Components/JSX Expressions {name}</h1>
+        <h1>Props/State/Components/JSX Expressions/Context</h1>
         <Hello x={1}/>
         <Hello x={3}/>
         <Hello x={555}/>

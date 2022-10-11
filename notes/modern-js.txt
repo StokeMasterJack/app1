@@ -26,3 +26,6 @@ Arrow Functions:
     };
 
     const arrowFunction2 = (x: number, y: number) => x + y;
+
+Spread operator (copy objects):
+    const b = {...box,length:5}

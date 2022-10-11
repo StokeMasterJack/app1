@@ -1,7 +1,6 @@
-import {useContext} from 'react';
 import {useState} from 'react';
-import {UserContext} from './App1';
-import {useTheme} from './ContextVars';
+import {useTheme} from './ThemeContext';
+import {useUser} from './UserContext';
 
 export function Counter() {
 
@@ -12,11 +11,11 @@ export function Counter() {
     }
 
 
-    const user = useContext(UserContext);
-    console.log('user: ', user?.ln);
+    const user = useUser();
+    console.log('user: ', user.ln);
 
     const theme = useTheme();
-
+    console.log('theme: ', theme.color);
     // if(x === null){
     //     return "Loading"
     // }

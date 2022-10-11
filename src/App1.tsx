@@ -1,20 +1,18 @@
-import {createContext} from 'react';
 import {useState} from 'react';
 import React from 'react';
 import {BlackjackVu} from './blackjack/BlackjackVu';
-import {ProvideTheme} from './ContextVars';
-import {Theme} from './ContextVars';
+import {ListsPage} from './ListsPage';
+import {ListsWithArrowPage} from './ListsWithArrowPage';
 import {Page1} from './Page1';
-import {StatelessCounter} from './StatelessCounter';
+import {Page2} from './Page2';
+import {StatelessCounterPage} from './StatelessCounterPage';
+import {ProvideTheme} from './ThemeContext';
+import {Theme} from './ThemeContext';
+import {User} from './UserContext';
+import {ProvideUser} from './UserContext';
 
-export interface User {
-    readonly fn: string;
-    readonly ln: string;
-}
+export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack'
 
-export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'StatefulComponent' | 'Blackjack'
-
-export const UserContext = createContext<User | null>(null);
 
 //use arrows function when passing functions
 export function App1() {
@@ -34,82 +32,37 @@ export function App1() {
         setPageName(pageName);
     };
 
-    return <UserContext.Provider value={user}>
+    return <ProvideUser value={user}>
         <ProvideTheme value={theme}>
-            <div>
+            <div  style={{margin: '1rem'}}>
                 <div style={{display: 'flex'}}>
-                    <MyButton pageName={'Page1'} selectedPageName={pageName} onPageClick={() => onPageChange('Page1')}/>
-                    <button onClick={() => setPageName('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
-                    <button onClick={() => setPageName('Lists')} style={{color: pageName === 'Lists' ? 'blue' : ''}}>Page 3</button>
-                    <button onClick={() => setPageName('ListWithArrow')} style={{color: pageName === 'ListWithArrow' ? 'blue' : ''}}>Page 4</button>
-                    <button onClick={() => setPageName('StatefulComponent')} style={{color: pageName === 'StatefulComponent' ? 'blue' : ''}}>Page 6</button>
-                    <button onClick={() => setPageName('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
+                    <button onClick={() => onPageChange('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button>
+                    <button onClick={() => onPageChange('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
+                    <button onClick={() => onPageChange('Lists')} style={{color: pageName === 'Lists' ? 'blue' : ''}}>Lists</button>
+                    <button onClick={() => onPageChange('ListWithArrow')} style={{color: pageName === 'ListWithArrow' ? 'blue' : ''}}>ListsWithArrowFunctions</button>
+                    <button onClick={() => onPageChange('AppScopeCounter')} style={{color: pageName === 'AppScopeCounter' ? 'blue' : ''}}>AppScopeCounter</button>
+                    <button onClick={() => onPageChange('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
                 </div>
 
-                {pageName === 'Page1' && <Page1 name="Page2"/>}
-                {pageName === 'Page2' && <Page2 name="Lists"/>}
-                {pageName === 'Lists' && <Page3 people={people}/>}
-                {pageName === 'ListWithArrow' && <Page4 people={people}/>}
-                {pageName === 'StatefulComponent' && <Page6 count={appScopeCount} up={up}/>}
+                {pageName === 'Page1' && <Page1/>}
+                {pageName === 'Page2' && <Page2/>}
+                {pageName === 'Lists' && <ListsPage people={people}/>}
+                {pageName === 'ListWithArrow' && <ListsWithArrowPage people={people}/>}
+                {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
                 {pageName === 'Blackjack' && <BlackjackVu/>}
             </div>
         </ProvideTheme>
-    </UserContext.Provider>;
+    </ProvideUser>;
 
 
 }
-
-function Page2({name}: { name: string }) {
-
-    return <div>
-        <h1>Page 2 {name})</h1>
-        <p>Page 2</p>
-    </div>;
-}
-
-function Page3({people}: { people: Array<string> }) {
-
-    function mappingFunction(personName: string) {
-        return <li>{personName}</li>;
-    }
-
-    return <div>
-        <h1>Page: Lists</h1>
-        <ul>
-            {people.map(mappingFunction)}
-        </ul>
-    </div>;
-}
-
-function Page4({people}: { people: Array<string> }) {
-
-    return <div>
-        <h1>Page4: Lists with Arrow functions</h1>
-        <ul>
-            {people.map(personName => <li>{personName}</li>)}
-        </ul>
-    </div>;
-
-}
-
-
-const Page6 = (props: { count: number, up: () => void }) => {
-    return <StatelessCounter count={props.count} up={props.up}/>;
-};
-
-
-const arrowFunction1 = (x: number, y: number) => {
-    return x + y;
-};
-
-
-const arrowFunction2 = (x: number, y: number) => x + y;
 
 function MyButton(props: { pageName: PageName, selectedPageName: PageName, onPageClick: (pageName: PageName) => void }) {
 
     const onPageClickInternal = () => {
         props.onPageClick(props.pageName);
     };
+
     return <button onClick={onPageClickInternal} style={{color: props.pageName === props.selectedPageName ? 'blue' : ''}}>Page 1</button>;
 }
 

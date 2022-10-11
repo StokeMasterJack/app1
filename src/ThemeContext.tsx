@@ -7,7 +7,6 @@ export interface Theme {
 
 export const ThemeContext = createContext<Theme | null>(null);
 
-
 export const useTheme = (): Theme => {
     const t = useContext(ThemeContext);
     if (t === null) {
@@ -15,7 +14,6 @@ export const useTheme = (): Theme => {
     }
     return t;
 };
-
 
 export const ProvideTheme = ({value, children}: { value: Theme | null, children: any }) => {
 

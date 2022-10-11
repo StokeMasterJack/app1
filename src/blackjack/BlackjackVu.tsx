@@ -7,7 +7,16 @@ export function BlackjackVu() {
 
     const [game, setGame] = useState<Game>(Game.mk({shuffle: true}));
 
-    return <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '1rem', backgroundColor: 'gray', width: '20'}}>
+    return <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '1rem',
+        backgroundColor: 'lightgray',
+        width: '30rem',
+        margin: '1rem'}}>
+
         <div>
             <button onClick={() => setGame(game.deal())}>Deal</button>
             <button onClick={() => setGame(game.hit())}>Hit</button>

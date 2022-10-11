@@ -1,8 +1,7 @@
-props must be camelcase
+Props must be camelcase
+Styles are javascript objects
 
-React template (embed js expressions in jsx)
-{}
-
+React template (embed js expressions in jsx): <div>{x}</div>
 
 Lists (tables): use the js map function
      const a = [1, 2, 3, 7];
@@ -13,3 +12,11 @@ Lists (tables): use the js map function
      <div>
         <ul>{a.map(mappingFunctionB)}</ul>
      </div>
+
+Conditional Rendering
+    Ternary operator:   {x < 4?<div>aaa</div>:<div>aaa</div>}
+    And:                {pageName === 'Page1' && <Page1/>}
+
+Don't render anything:
+    null
+    false
