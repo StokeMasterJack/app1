@@ -1,15 +1,16 @@
 import axios from 'axios';
 import {useEffect} from 'react';
 import {useState} from 'react';
+import {VGap} from '../RLayout';
 import {Ro} from '../RLayout';
 import {Po} from './PosPage';
 
 
 function blankPo(): Po {
-    return {id: '', requestDate: '', vendorId: '', vendorName: '',status:''};
+    return {id: '', requestDate: '', vendorId: '', vendorName: '', status: ''};
 }
 
-export function PoForm({id}: { id: string | null }) {
+export function PoForm({id, onChange}: { id: string | null, onChange: (po: Po) => void }) {
 
     const [po, setPo] = useState<Po>(blankPo);
 
@@ -24,10 +25,11 @@ export function PoForm({id}: { id: string | null }) {
         };
 
         getPo();
-    },[id]);
+    }, [id]);
 
     const onSave = async () => {
         const axiosResponse = await axios.put('/po.json', po);
+        onChange(po);
         // setPo(axiosResponse.data);
     };
     const onCh = (event: any) => {
@@ -36,7 +38,7 @@ export function PoForm({id}: { id: string | null }) {
         setPo({...po, [n]: v});
     };
 
-    return <div style={{backgroundColor:'lightgray',margin:'2rem'}}>
+    return <div style={{backgroundColor: 'lightgray', margin: '2rem', height: '10rem'}}>
         <Ro>
             <div style={{width: '10rem'}}>ID:</div>
             <input name="id" value={po.id ? po.id : 'New'} readOnly={true}/>
@@ -57,6 +59,7 @@ export function PoForm({id}: { id: string | null }) {
             <div style={{width: '10rem'}}>Status:</div>
             <input name="status" value={po.status} onChange={onCh}/>
         </Ro>
+        <VGap/>
         <button onClick={onSave}>Save</button>
     </div>;
 }

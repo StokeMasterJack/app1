@@ -13,24 +13,24 @@ export class Card {
     get suitName(): string {
         switch (this.suit) {
             case 1:
-                return "Spades";
+                return 'Spades';
             case 2:
-                return "Hearts";
+                return 'Hearts';
             case 3:
-                return "Clubs";
+                return 'Clubs';
             case 4:
-                return "Diamonds";
+                return 'Diamonds';
             default:
                 throw new Error(`Bad suit: ${this.suit}`);
         }
     }
 
     get valueName(): string {
-        if (this.value === 1) return "Ace";
+        if (this.value === 1) return 'Ace';
         if (this.value > 1 && this.value < 11) return String(this.value);
-        if (this.value === 11) return "Jack";
-        if (this.value === 12) return "Queen";
-        if (this.value === 13) return "King";
+        if (this.value === 11) return 'Jack';
+        if (this.value === 12) return 'Queen';
+        if (this.value === 13) return 'King';
         throw new Error(`Bad value: ${this.value}`);
     }
 
@@ -114,7 +114,7 @@ export class Deck {
     }
 
     print() {
-        console.group("Deck");
+        console.group('Deck');
         this.cardsUnused.forEach(c => console.debug(c.name));
         console.groupEnd();
     }
@@ -171,7 +171,7 @@ export class Game {
     readonly dh: Hand;
     readonly isStay: boolean;
 
-     constructor({deck, ph, dh, isStay}: { deck: Deck, ph: Hand, dh: Hand, isStay: boolean }) {
+    constructor({deck, ph, dh, isStay}: { deck: Deck, ph: Hand, dh: Hand, isStay: boolean }) {
         this.deck = deck;
         this.ph = ph;
         this.dh = dh;
@@ -185,8 +185,8 @@ export class Game {
     static mk({shuffle}: { shuffle: boolean }): Game {
         return new Game({
             deck: Deck.mk({shuffle}),
-            ph: Hand.mk({name: "Player"}),
-            dh: Hand.mk({name: "Dealer"}),
+            ph: Hand.mk({name: 'Player'}),
+            dh: Hand.mk({name: 'Dealer'}),
             isStay: false
         }).deal();
     }
@@ -224,11 +224,11 @@ export class Game {
     // noinspection JSUnusedGlobalSymbols
     update(action: BjAction): Game {
         switch (action.type) {
-            case "deal":
+            case 'deal':
                 return this.deal();
-            case "hit":
+            case 'hit':
                 return this.hit();
-            case "stay":
+            case 'stay':
                 return this.stay();
             default:
                 throw Error();
@@ -242,16 +242,16 @@ export class Game {
 
     get msg(): string {
         const g = this;
-        if (g.isActive) return "Press Hit or Stay.";
-        if (g.dh.points > 21) return "Player Wins!";
-        if (g.ph.points > 21) return "Dealer Wins!";
-        if (g.ph.points > g.dh.points) return "Player Wins!";
-        return "Dealer Wins!";
+        if (g.isActive) return 'Press Hit or Stay.';
+        if (g.dh.points > 21) return 'Player Wins!';
+        if (g.ph.points > 21) return 'Dealer Wins!';
+        if (g.ph.points > g.dh.points) return 'Player Wins!';
+        return 'Dealer Wins!';
     }
 
     // noinspection JSUnusedGlobalSymbols
     print() {
-        console.group("Blackjack");
+        console.group('Blackjack');
         this.ph.print();
         this.dh.print();
         console.groupEnd();
@@ -261,6 +261,7 @@ export class Game {
 }
 
 export type BjAction = {
-    type: "deal" | "hit" | "stay"
+    type: 'deal' | 'hit' | 'stay',
+    payload?: any
 }
 

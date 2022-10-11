@@ -1,3 +1,32 @@
 useState()
 useContext()
 useEffect()
+
+Hook rules
+    Can't be in conditionals or loops
+    Typically put near top of component
+    Hooks can only be used in a React Component or another hook
+
+More about useState:
+    State updaters:  setState(prev => prev + 1)
+    Accessing state too soon
+    Updating arrays and objects (as state)
+    Always use a new object for state
+    Never update state from render
+    Pure functions
+    Lift state up
+    Unidirectional
+
+
+Memo Demo
+    React.memo
+    useCallback - memoize a function definition (that is passed to a child component)
+    useMemo - memoize a value computation (in the rendering)
+
+More Hooks and apis
+    Container/Presenter
+    useReducer
+    useRef
+    useForwardRef
+
+

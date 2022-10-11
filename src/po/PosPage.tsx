@@ -43,6 +43,7 @@ export function PosPage() {
     const [vendors, setVendors] = useState<Array<Vendor>>([]);
     const [vendorId, setVendorId] = useState<string>('');
     const [status, setStatus] = useState<string>('');
+
     const [selectedPoId, setSelectedPoId] = useState<string>('1');
 
     useEffect(() => {
@@ -69,6 +70,13 @@ export function PosPage() {
         getVendors();
 
     }, []);
+
+
+    const refreshPos = async () => {
+        const axiosResponse = await axios.get<Array<Po>>(`/pos.json?vendorId=${vendorId}&status=${status}`);
+        const posResult = axiosResponse.data;
+        setPos(posResult);
+    }
 
     const onVendorIdChange = (event: any) => {
         const value = event.target.value;
@@ -118,14 +126,14 @@ export function PosPage() {
                     <td>{po.vendorId}</td>
                     <td>{po.vendorName}</td>
                     <td>{po.requestDate}</td>
-                    <td><button onClick={() => setSelectedPoId(po.id)}>Edit</button></td>
+                    <td>
+                        <button onClick={() => setSelectedPoId(po.id)}>Edit</button>
+                    </td>
                 </tr>)}
                 </tbody>
             </table>
         </Co>
-        <Co>
-            <PoForm id={selectedPoId}/>
-        </Co>
+        <PoForm id={selectedPoId} onChange={()=> refreshPos()}/>
     </Ro>;
 
 

@@ -1,16 +1,16 @@
 import {useState} from 'react';
 import React from 'react';
-import {BlackjackVu} from './blackjack/BlackjackVu';
+import {Blackjack} from './blackjack/BlackjackVu';
 import {ListsPage} from './ListsPage';
 import {ListsWithArrowPage} from './ListsWithArrowPage';
 import {Page1} from './Page1';
 import {Page2} from './Page2';
+import {PosPage} from './po/PosPage';
 import {StatelessCounterPage} from './StatelessCounterPage';
 import {ProvideTheme} from './ThemeContext';
 import {Theme} from './ThemeContext';
 import {User} from './UserContext';
 import {ProvideUser} from './UserContext';
-import {PosPage} from './po/PosPage';
 
 export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack' | 'Pos'
 
@@ -51,7 +51,7 @@ export function App1() {
                 {pageName === 'Lists' && <ListsPage people={people}/>}
                 {pageName === 'ListWithArrow' && <ListsWithArrowPage people={people}/>}
                 {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
-                {pageName === 'Blackjack' && <BlackjackVu/>}
+                {pageName === 'Blackjack' && <Blackjack/>}
                 {pageName === 'Pos' && <PosPage/>}
             </div>
         </ProvideTheme>

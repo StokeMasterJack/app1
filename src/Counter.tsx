@@ -7,7 +7,8 @@ export function Counter() {
     const [count, setCount] = useState<number>(5);
 
     function up() {
-        setCount(count + 1);
+        setCount(prev => prev + 1)
+        // setCount(count + 1);
     }
 
 
