@@ -11,13 +11,15 @@ import {ProvideTheme} from './ThemeContext';
 import {Theme} from './ThemeContext';
 import {User} from './UserContext';
 import {ProvideUser} from './UserContext';
+import {UseRefFun} from './UseRefFun';
+import {spaRedir} from './util';
 
-export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack' | 'Pos'
+export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack' | 'Pos' | 'UseRefFun'
 
 
 //use arrows function when passing functions
 export function App1() {
-    const [pageName, setPageName] = useState<PageName>('Page1');
+    // const [pageName, setPageName] = useState<PageName>('Page1');
     const [appScopeCount, setAppScopeCount] = useState(5);
     const [user, setUser] = useState<User | null>({fn: 'dave', ln: 'ford'});
     const [theme, setTheme] = useState<Theme | null>({color: 'blue'});
@@ -30,8 +32,11 @@ export function App1() {
     };
 
     const onPageChange = (pageName: PageName) => {
-        setPageName(pageName);
+        spaRedir({url: pageName});
     };
+
+    const pageName = window.location.pathname.replace('/', '');
+    console.log('pageName: ', pageName);
 
     return <ProvideUser value={user}>
         <ProvideTheme value={theme}>
@@ -44,6 +49,7 @@ export function App1() {
                     <button onClick={() => onPageChange('AppScopeCounter')} style={{color: pageName === 'AppScopeCounter' ? 'blue' : ''}}>AppScopeCounter</button>
                     <button onClick={() => onPageChange('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
                     <button onClick={() => onPageChange('Pos')} style={{color: pageName === 'Pos' ? 'blue' : ''}}>Pos</button>
+                    <button onClick={() => onPageChange('UseRefFun')} style={{color: pageName === 'UseRefFun' ? 'blue' : ''}}>UseRefFun</button>
                 </div>
 
                 {pageName === 'Page1' && <Page1/>}
@@ -53,6 +59,7 @@ export function App1() {
                 {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
                 {pageName === 'Blackjack' && <Blackjack/>}
                 {pageName === 'Pos' && <PosPage/>}
+                {pageName === 'UseRefFun' && <UseRefFun/>}
             </div>
         </ProvideTheme>
     </ProvideUser>;

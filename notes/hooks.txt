@@ -1,6 +1,8 @@
 useState()
 useContext()
 useEffect()
+useRef()      //with a number and with dom component
+useForwardRef()   //if want to pass a ref to a custom component that is a child
 
 Hook rules
     Can't be in conditionals or loops
@@ -23,9 +25,11 @@ Memo Demo
     useCallback - memoize a function definition (that is passed to a child component)
     useMemo - memoize a value computation (in the rendering)
 
+useReducer
+     dispatch
+     Container/Presenter
+
 More Hooks and apis
-    Container/Presenter
-    useReducer
     useRef
     useForwardRef
 

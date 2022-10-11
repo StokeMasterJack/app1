@@ -20,3 +20,5 @@ Conditional Rendering
 Don't render anything:
     null
     false
+
+< {...props> }
