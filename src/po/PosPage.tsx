@@ -21,11 +21,25 @@ export interface Po {
     readonly status: string;
 }
 
+export interface Vendor {
+    id: number;
+    name: string;
+}
+
+const statusList = ['', 'Draft', 'Pending', 'Approved', 'Open', 'Complete', 'Canceled'];
+
+const sortVendorsFunction = (a: Vendor, b: Vendor): number => {
+    const aa = a.name ?? '';
+    const bb = b.name ?? '';
+    return aa.localeCompare(bb);
+}
+
 export function PosPage() {
 
     console.log('PosPage render');
 
     const [pos, setPos] = useState<Array<Po>>([]);
+    const [vendors, setVendors] = useState<Array<Vendor>>([]);
     const [vendorId, setVendorId] = useState<string>('');
     const [status, setStatus] = useState<string>('');
 
@@ -37,17 +51,22 @@ export function PosPage() {
             setPos(posResult);
         };
 
-        // const getPos1 =  () => {
-        //     axios.get<Array<Po>>('/pos.json').then(()=>{
-        //
-        //     })
-        //     const posResult = axiosResponse.data;
-        //     setPos(posResult);
-        // };
-
         getPos();
 
     }, [vendorId, status]);
+
+    useEffect(() => {
+
+        const getVendors = async () => {
+            const axiosResponse = await axios.get<Array<Vendor>>(`/vendors.json`);
+            const vendorsResult = axiosResponse.data;
+            vendorsResult.sort(sortVendorsFunction)
+            setVendors(vendorsResult);
+        };
+
+        getVendors();
+
+    }, []);
 
     const onVendorIdChange = (event: any) => {
         const value = event.target.value;
@@ -66,13 +85,24 @@ export function PosPage() {
             <Ro>
                 <div>Vendor id</div>
                 <HGap/>
+
                 <input value={vendorId} onChange={onVendorIdChange}/>
+                <HGap/>
+                <select value={vendorId} onChange={onVendorIdChange}>
+                    <option value={''}></option>
+                    {vendors.map(v => <option key={v.id} value={v.id}>{v.name}</option>)}
+                </select>
+
             </Ro>
             <VGap/>
             <Ro>
                 <div>Status</div>
                 <HGap/>
                 <input value={status} onChange={onStatusChange}/>
+                <HGap/>
+                <select value={status} onChange={onStatusChange}>
+                    {statusList.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
             </Ro>
             <VGap/>
             <VGap/>

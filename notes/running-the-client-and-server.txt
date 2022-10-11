@@ -1,0 +1,11 @@
+To run the server:
+    git clone https://github.com/StokeMasterJack/api1
+    cd api1
+    npm install
+    node index.js
+
+To run the client:
+    git clone https://github.com/StokeMasterJack/app1
+    cd app1
+    npm install
+    npm start
