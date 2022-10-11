@@ -1,3 +1,5 @@
+import {useReducer} from 'react';
+import {useCallback} from 'react';
 import {useState} from 'react';
 import React from 'react';
 import {BjAction} from './blackjack';
@@ -15,12 +17,7 @@ const reducer = (game: Game, action: BjAction): Game => {
 };
 
 export function Blackjack() {
-    const [game, setGame] = useState<Game>(Game.mk({shuffle: true}));
-
-    const dispatch = (action: BjAction) => {
-        setGame(reducer(game, action));
-    };
-
+    const [game,dispatch] = useReducer(reducer,Game.mk({shuffle: true}))
     return <BlackjackVu game={game} dispatch={dispatch}/>;
 
 }
