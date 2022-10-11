@@ -1,11 +1,16 @@
-date for UI
+Data for UI
     state
     props
     context
 
 Where to put state?
+    Common parent of components that need access to  it.
 
 Unidirectional
+    Data and callback functions only flow down the component tree.
+        Can't call parent or siblings.
+        Can't modify data of parent or siblings.
+        Except through a callback
 
 App (state count , up)
     Page6 props: count up
