@@ -5,6 +5,7 @@ import {VGap} from '../RLayout';
 import {HGap} from '../RLayout';
 import {Ro} from '../RLayout';
 import {Co} from '../RLayout';
+import {PoForm} from './PoForm';
 
 /*
     "id": 1334,
@@ -14,9 +15,9 @@ import {Co} from '../RLayout';
         "status": "Complete"
  */
 export interface Po {
-    readonly id: number;
+    readonly id: string;
     readonly requestDate: string;
-    readonly vendorId: number;
+    readonly vendorId: string;
     readonly vendorName: string;
     readonly status: string;
 }
@@ -32,7 +33,7 @@ const sortVendorsFunction = (a: Vendor, b: Vendor): number => {
     const aa = a.name ?? '';
     const bb = b.name ?? '';
     return aa.localeCompare(bb);
-}
+};
 
 export function PosPage() {
 
@@ -42,6 +43,7 @@ export function PosPage() {
     const [vendors, setVendors] = useState<Array<Vendor>>([]);
     const [vendorId, setVendorId] = useState<string>('');
     const [status, setStatus] = useState<string>('');
+    const [selectedPoId, setSelectedPoId] = useState<string>('1');
 
     useEffect(() => {
 
@@ -60,7 +62,7 @@ export function PosPage() {
         const getVendors = async () => {
             const axiosResponse = await axios.get<Array<Vendor>>(`/vendors.json`);
             const vendorsResult = axiosResponse.data;
-            vendorsResult.sort(sortVendorsFunction)
+            vendorsResult.sort(sortVendorsFunction);
             setVendors(vendorsResult);
         };
 
@@ -78,48 +80,53 @@ export function PosPage() {
         setStatus(value);
     };
 
-    return <div>
-        <VGap/>
-        <VGap/>
+    return <Ro>
         <Co>
-            <Ro>
-                <div>Vendor id</div>
-                <HGap/>
+            <VGap/>
+            <VGap/>
+            <Co>
+                <Ro>
+                    <div>Vendor id</div>
+                    <HGap/>
 
-                <input value={vendorId} onChange={onVendorIdChange}/>
-                <HGap/>
-                <select value={vendorId} onChange={onVendorIdChange}>
-                    <option value={''}></option>
-                    {vendors.map(v => <option key={v.id} value={v.id}>{v.name}</option>)}
-                </select>
+                    <input value={vendorId} onChange={onVendorIdChange}/>
+                    <HGap/>
+                    <select value={vendorId} onChange={onVendorIdChange}>
+                        <option value={''}></option>
+                        {vendors.map(v => <option key={v.id} value={v.id}>{v.name}</option>)}
+                    </select>
 
-            </Ro>
-            <VGap/>
-            <Ro>
-                <div>Status</div>
-                <HGap/>
-                <input value={status} onChange={onStatusChange}/>
-                <HGap/>
-                <select value={status} onChange={onStatusChange}>
-                    {statusList.map(s => <option key={s} value={s}>{s}</option>)}
-                </select>
-            </Ro>
-            <VGap/>
-            <VGap/>
+                </Ro>
+                <VGap/>
+                <Ro>
+                    <div>Status</div>
+                    <HGap/>
+                    <input value={status} onChange={onStatusChange}/>
+                    <HGap/>
+                    <select value={status} onChange={onStatusChange}>
+                        {statusList.map(s => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                </Ro>
+                <VGap/>
+                <VGap/>
+            </Co>
+            <table>
+                <tbody>
+                {pos.map(po => <tr key={po.id}>
+                    <td>{po.id}</td>
+                    <td>{po.status}</td>
+                    <td>{po.vendorId}</td>
+                    <td>{po.vendorName}</td>
+                    <td>{po.requestDate}</td>
+                    <td><button onClick={() => setSelectedPoId(po.id)}>Edit</button></td>
+                </tr>)}
+                </tbody>
+            </table>
         </Co>
-        <table>
-            <tbody>
-            {pos.map(po => <tr key={po.id}>
-                <td>{po.id}</td>
-                <td>{po.status}</td>
-                <td>{po.vendorId}</td>
-                <td>{po.vendorName}</td>
-                <td>{po.requestDate}</td>
-            </tr>)}
-            </tbody>
-        </table>
-
-    </div>;
+        <Co>
+            <PoForm id={selectedPoId}/>
+        </Co>
+    </Ro>;
 
 
 }
