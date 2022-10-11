@@ -22,3 +22,14 @@ Don't render anything:
     false
 
 < {...props> }
+
+
+ 100 ways to do css/style in React
+    css file:
+        use css the normal way: link/style tag
+        use css the CRA way
+
+    css-in-js
+       dave: use react style tag
+       css-in-js libs
+            jsstyle

@@ -1,0 +1,10 @@
+npm start  : dev server
+
+
+npm build
+npm run build
+
+env vars
+    .env
+    .env.development
+    .env.production

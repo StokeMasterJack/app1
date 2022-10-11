@@ -2,20 +2,16 @@ import {useContext} from 'react';
 import {createContext} from 'react';
 
 export interface Theme {
-    color: 'blue';
+    color: string;
 }
 
-export const ThemeContext = createContext<Theme | null>(null);
+export const ThemeContext = createContext<Theme>({color: 'blue'});
 
 export const useTheme = (): Theme => {
-    const t = useContext(ThemeContext);
-    if (t === null) {
-        throw Error('Not Logged In');
-    }
-    return t;
+    return useContext(ThemeContext);
 };
 
-export const ProvideTheme = ({value, children}: { value: Theme | null, children: any }) => {
+export const ProvideTheme = ({value, children}: { value: Theme, children: any }) => {
 
     return <ThemeContext.Provider value={value}>
         {children}

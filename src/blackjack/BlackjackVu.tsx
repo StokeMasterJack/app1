@@ -9,7 +9,7 @@ import {HandVu} from './HandVu';
 
 // type Action = 'Hit' | 'Deal' | 'Stay'
 
-const reducer = (game: Game, action: BjAction): Game => {
+export const reducer = (game: Game, action: BjAction): Game => {
     if (action.type === 'deal') return game.deal();
     if (action.type === 'hit') return game.hit();
     if (action.type === 'stay') return game.stay();
