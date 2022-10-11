@@ -6,7 +6,7 @@ export const HandVu = ({hand}:{hand: Hand}) => {
         <div>
             <div style={{fontWeight: 'bold',color:'red'}}>{hand.name}</div>
             <div style={{}}>
-                {hand.cards.map(card => <div>{card.name}</div>)}
+                {hand.cards.map(card => <div key={card.name}>{card.name}</div>)}
             </div>
         </div>
         <div style={{fontWeight:'bold',color:'red'}}>{hand.msg}</div>

@@ -14,7 +14,7 @@ Lists (tables): use the js map function
      </div>
 
 Conditional Rendering
-    Ternary operator:   {x < 4?<div>aaa</div>:<div>aaa</div>}
+    Ternary operator:   {pageName === 'Page1'?<Page1/>:null}
     And:                {pageName === 'Page1' && <Page1/>}
 
 Don't render anything:

@@ -29,3 +29,9 @@ Arrow Functions:
 
 Spread operator (copy objects):
     const b = {...box,length:5}
+    const [b,setB] = useState({l:10,w:10})
+
+    b.w = 10 //wrong
+    setB(b)  //wrong
+
+    setB({...b,w:5})

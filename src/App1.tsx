@@ -10,8 +10,9 @@ import {ProvideTheme} from './ThemeContext';
 import {Theme} from './ThemeContext';
 import {User} from './UserContext';
 import {ProvideUser} from './UserContext';
+import {PosPage} from './po/PosPage';
 
-export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack'
+export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack' | 'Pos'
 
 
 //use arrows function when passing functions
@@ -34,7 +35,7 @@ export function App1() {
 
     return <ProvideUser value={user}>
         <ProvideTheme value={theme}>
-            <div  style={{margin: '1rem'}}>
+            <div style={{margin: '1rem'}}>
                 <div style={{display: 'flex'}}>
                     <button onClick={() => onPageChange('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button>
                     <button onClick={() => onPageChange('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
@@ -42,6 +43,7 @@ export function App1() {
                     <button onClick={() => onPageChange('ListWithArrow')} style={{color: pageName === 'ListWithArrow' ? 'blue' : ''}}>ListsWithArrowFunctions</button>
                     <button onClick={() => onPageChange('AppScopeCounter')} style={{color: pageName === 'AppScopeCounter' ? 'blue' : ''}}>AppScopeCounter</button>
                     <button onClick={() => onPageChange('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
+                    <button onClick={() => onPageChange('Pos')} style={{color: pageName === 'Pos' ? 'blue' : ''}}>Pos</button>
                 </div>
 
                 {pageName === 'Page1' && <Page1/>}
@@ -50,6 +52,7 @@ export function App1() {
                 {pageName === 'ListWithArrow' && <ListsWithArrowPage people={people}/>}
                 {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
                 {pageName === 'Blackjack' && <BlackjackVu/>}
+                {pageName === 'Pos' && <PosPage/>}
             </div>
         </ProvideTheme>
     </ProvideUser>;
