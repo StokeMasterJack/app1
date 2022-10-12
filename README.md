@@ -11,9 +11,10 @@ We added some super cool stuff near the end:
 * React UI Unit Tests. Check out the src/blackjack directory.
 
 ## If you DID stay until the end:
-* I cleaned up some of our ad hoc examples and added them to the App1 main menu.
+* I cleaned up some of our ad hoc examples and added them to the App1 main menu (had to go vertical to fit everything).
 * I finished/fixed the React Unit Tests we were working on. Check them out. They are now pretty awesome.
 
+![img.png](img.png)
 
 ## To run the final projects on your computer
 
