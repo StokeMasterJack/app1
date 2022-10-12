@@ -27,7 +27,7 @@ export interface Vendor {
     name: string;
 }
 
-const statusList = ['', 'Draft', 'Pending', 'Approved', 'Open', 'Complete', 'Canceled'];
+export const statusList = ['', 'Draft', 'Pending', 'Approved', 'Open', 'Complete', 'Canceled'];
 
 const sortVendorsFunction = (a: Vendor, b: Vendor): number => {
     const aa = a.name ?? '';

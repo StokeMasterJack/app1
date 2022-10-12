@@ -8,7 +8,7 @@ import {ErrorBoundaryDemo} from './ErrorBoundaryDemo';
 import {HigherOrderComponents} from './HigherOrderComponents';
 import {ListsPage} from './ListsPage';
 import {ListsWithArrowPage} from './ListsWithArrowPage';
-import {Old} from './Old';
+import {PosWithClassComponent} from './PosWithClassComponent';
 import {Page1} from './Page1';
 import {Page2} from './Page2';
 import {PosPage} from './po/PosPage';
@@ -31,7 +31,7 @@ export type PageName =
     | 'Blackjack'
     | 'Pos'
     | 'UseRefFun'
-    | 'Old'
+    | 'PosWithClassComponent'
     | 'EnvVars'
     | 'HigherOrderComponents'
     | 'ErrorBoundaryDemo'
@@ -72,7 +72,7 @@ export function App1() {
                     <button onClick={() => onPageChange('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
                     <button onClick={() => onPageChange('Pos')} style={{color: pageName === 'Pos' ? 'blue' : ''}}>Pos</button>
                     <button onClick={() => onPageChange('UseRefFun')} style={{color: pageName === 'UseRefFun' ? 'blue' : ''}}>UseRefFun</button>
-                    <button onClick={() => onPageChange('Old')} style={{color: pageName === 'Old' ? 'blue' : ''}}>Old</button>
+                    <button onClick={() => onPageChange('PosWithClassComponent')} style={{color: pageName === 'PosWithClassComponent' ? 'blue' : ''}}>PosWithClassComponent</button>
                     <button onClick={() => onPageChange('EnvVars')} style={{color: pageName === 'EnvVars' ? 'blue' : ''}}>EnvVars</button>
                     <button onClick={() => onPageChange('HigherOrderComponents')} style={{color: pageName === 'HigherOrderComponents' ? 'blue' : ''}}>HigherOrderComponents</button>
                     <button onClick={() => onPageChange('ErrorBoundaryDemo')} style={{color: pageName === 'ErrorBoundaryDemo' ? 'blue' : ''}}>ErrorBoundaryDemo</button>
@@ -87,7 +87,7 @@ export function App1() {
                 {pageName === 'Blackjack' && <Blackjack/>}
                 {pageName === 'Pos' && <PosPage/>}
                 {pageName === 'UseRefFun' && <UseRefFun/>}
-                {pageName === 'Old' && <Old x={20}/>}
+                {pageName === 'PosWithClassComponent' && <PosWithClassComponent/>}
                 {pageName === 'EnvVars' && <EnvVars/>}
                 {pageName === 'HigherOrderComponents' && <HigherOrderComponents/>}
                 {pageName === 'ErrorBoundaryDemo' && <ErrorBoundaryDemo/>}
