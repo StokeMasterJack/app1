@@ -1,18 +1,16 @@
 # React Workshop for Cisco
 
 ## If you left early
-We added some super cool stuff near the end:
+We added some cool stuff near the end:
 
 * Full routing with URL and back button support.
-* Recreated the Pos page using a class-based component.
+* Recreated the Pos page as a class-based component.
+* Error Boundaries
+* useRef hook
 * CRA's Environment Variable feature
-* Error Boundaries to gracefully handle errors in your React components
-* Higher Order Components, render functions, useRef hook
-* React UI Unit Tests. Check out the src/blackjack directory.
-
-## If you DID stay until the end:
-* I cleaned up some of our ad hoc examples and added them to the App1 main menu (had to go vertical to fit everything).
-* I finished/fixed the React Unit Tests we were working on. Check them out. They are now pretty awesome.
+* Higher Order Components
+* React UI Unit Tests (finally finished/fixed these)
+* Cleaned up some ad hoc examples and added them to the App1 menu
 
 ![img.png](img.png)
 
