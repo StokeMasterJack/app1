@@ -1,3 +1,5 @@
+// noinspection JSIgnoredPromiseFromCall
+
 import axios from 'axios';
 import {useEffect} from 'react';
 import {useState} from 'react';
@@ -36,9 +38,6 @@ const sortVendorsFunction = (a: Vendor, b: Vendor): number => {
 };
 
 export function PosPage() {
-
-    console.log('PosPage render');
-
     const [pos, setPos] = useState<Array<Po>>([]);
     const [vendors, setVendors] = useState<Array<Vendor>>([]);
     const [vendorId, setVendorId] = useState<string>('');
@@ -76,7 +75,7 @@ export function PosPage() {
         const axiosResponse = await axios.get<Array<Po>>(`/pos.json?vendorId=${vendorId}&status=${status}`);
         const posResult = axiosResponse.data;
         setPos(posResult);
-    }
+    };
 
     const onVendorIdChange = (event: any) => {
         const value = event.target.value;
@@ -88,8 +87,10 @@ export function PosPage() {
         setStatus(value);
     };
 
-    return <Ro>
-        <Co style={{width:'50rem'}}>
+    return <Co>
+        <h1>Pos</h1>
+        <Ro>
+        <Co style={{width: '50rem'}}>
             <VGap/>
             <VGap/>
             <Co>
@@ -133,8 +134,8 @@ export function PosPage() {
                 </tbody>
             </table>
         </Co>
-        <PoForm id={selectedPoId} onChange={()=> refreshPos()}/>
-    </Ro>;
+        <PoForm id={selectedPoId} onChange={() => refreshPos()}/>
+    </Ro></Co>;
 
 
 }

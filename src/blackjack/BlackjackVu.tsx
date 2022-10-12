@@ -19,6 +19,7 @@ export function BlackjackVu({game, dispatch}: { game: Game, dispatch?: (action: 
         width: '30rem',
         margin: '1rem'
     }}>
+        <h1>Blackjack</h1>
         <div>
             <button onClick={() => d({type: 'Deal'})} aria-label={'Deal'} disabled={game.isActive}>Deal</button>
             <button onClick={() => d({type: 'Hit'})} aria-label={'Hit'} disabled={!game.isActive}>Hit</button>

@@ -15,7 +15,7 @@ import {PosWithClassComponent} from './PosWithClassComponent';
 import {ReactUnitTests} from './ReactUnitTests';
 import {Ro} from './RLayout';
 import {Co} from './RLayout';
-import {StatelessCounterPage} from './StatelessCounterPage';
+import {AppScopeCounter} from './AppScopeCounter';
 import {ProvideTheme} from './ThemeContext';
 import {Theme} from './ThemeContext';
 import {User} from './UserContext';
@@ -85,7 +85,7 @@ export function App1() {
                     {pageName === 'Page2' && <Page2/>}
                     {pageName === 'Lists' && <ListsPage people={people}/>}
                     {pageName === 'ListWithArrow' && <ListsWithArrowPage people={people}/>}
-                    {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
+                    {pageName === 'AppScopeCounter' && <AppScopeCounter count={appScopeCount} up={up}/>}
                     {pageName === 'Blackjack' && <Blackjack/>}
                     {pageName === 'Pos' && <PosPage/>}
                     {pageName === 'UseRefFun' && <UseRefFun/>}

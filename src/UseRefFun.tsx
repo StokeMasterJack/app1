@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {useRef} from 'react';
+import {VGap} from './RLayout';
 import {Co} from './RLayout';
 import {VF} from './util';
 
@@ -49,7 +50,7 @@ export function UseRefFun() {
     useInterval(1000, () => setCount(prev => prev + 1));
 
     // useInterval(1000, () => setCount(count + 1));
-    return <Co>
+    return <Co style={{width:'10rem'}}>
         <input/>
         <input/>
         <input/>
@@ -57,6 +58,7 @@ export function UseRefFun() {
         <input/>
         <input/>
         <input/>
+        <VGap/>
         count: {count}
     </Co>;
 }

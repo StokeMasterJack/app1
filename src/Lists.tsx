@@ -1,6 +1,6 @@
-export function Lists({height, width}: { height: number, width: number }) {
-    const xxx = `Foo ${height}`;
+import {Co} from './RLayout';
 
+export function Lists({height, width}: { height: number, width: number }) {
 
     const a = [1, 2, 3, 7];
 
@@ -9,20 +9,23 @@ export function Lists({height, width}: { height: number, width: number }) {
     }
 
     function mappingFunctionB(x: number) {
-        return <li>{x}</li>;
+        return <li key={x}>{x}</li>;
     }
 
     const aa = a.map(mappingFunctionA);  //2,4,6,14
+    console.log("aa: ",aa);
 
     const bb = <ul>{a.map(mappingFunctionB)}</ul>;  //<li>1</li><li>2</li><li>3</li><li>7</li>
 
     const cc = 7 > 8 ? '111' : '222';
+    console.log("cc: ",cc);
 
 
-    return <div>
+    return <Co>
+
         <div style={{backgroundColor: 'red', width: `${width}rem`, height}}></div>
         {bb}
-    </div>;
+    </Co>;
 }
 
 
