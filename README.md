@@ -15,10 +15,3 @@
         npm install
         npm start
 
-## Routing Branch
-Note: The routing example was done on a **_separate branch (called routing)_**. 
-All subsequent additions/fixes were done on that branch. So that is the latest and greatest.
-
-To access that branch you can use this command from within your local app1 dir:
-
-    git checkout -b routing origin/routing
