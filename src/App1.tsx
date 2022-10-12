@@ -4,7 +4,8 @@
 import {useState} from 'react';
 import React from 'react';
 import {Blackjack} from './blackjack/Blackjack';
-import {ErrorBoundary} from './ErrorBoundary';
+import {ErrorBoundaryDemo} from './ErrorBoundaryDemo';
+import {HigherOrderComponents} from './HigherOrderComponents';
 import {ListsPage} from './ListsPage';
 import {ListsWithArrowPage} from './ListsWithArrowPage';
 import {Old} from './Old';
@@ -21,7 +22,20 @@ import {ProvideUser} from './UserContext';
 import {UseRefFun} from './UseRefFun';
 import {spaRedir} from './util';
 
-export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack' | 'Pos' | 'UseRefFun' | 'Old' | 'EnvVars' | 'ReactUnitTests';
+export type PageName =
+    | 'Page1'
+    | 'Page2'
+    | 'Lists'
+    | 'ListWithArrow'
+    | 'AppScopeCounter'
+    | 'Blackjack'
+    | 'Pos'
+    | 'UseRefFun'
+    | 'Old'
+    | 'EnvVars'
+    | 'HigherOrderComponents'
+    | 'ErrorBoundaryDemo'
+    | 'ReactUnitTests';
 
 
 //use arrows function when passing functions
@@ -60,11 +74,13 @@ export function App1() {
                     <button onClick={() => onPageChange('UseRefFun')} style={{color: pageName === 'UseRefFun' ? 'blue' : ''}}>UseRefFun</button>
                     <button onClick={() => onPageChange('Old')} style={{color: pageName === 'Old' ? 'blue' : ''}}>Old</button>
                     <button onClick={() => onPageChange('EnvVars')} style={{color: pageName === 'EnvVars' ? 'blue' : ''}}>EnvVars</button>
+                    <button onClick={() => onPageChange('HigherOrderComponents')} style={{color: pageName === 'HigherOrderComponents' ? 'blue' : ''}}>HigherOrderComponents</button>
+                    <button onClick={() => onPageChange('ErrorBoundaryDemo')} style={{color: pageName === 'ErrorBoundaryDemo' ? 'blue' : ''}}>ErrorBoundaryDemo</button>
                     <button onClick={() => onPageChange('ReactUnitTests')} style={{color: pageName === 'ReactUnitTests' ? 'blue' : ''}}>ReactUnitTests</button>
                 </div>
 
                 {pageName === 'Page1' && <Page1/>}
-                {pageName === 'Page2' && <ErrorBoundary><Page2/></ErrorBoundary>}
+                {pageName === 'Page2' && <Page2/>}
                 {pageName === 'Lists' && <ListsPage people={people}/>}
                 {pageName === 'ListWithArrow' && <ListsWithArrowPage people={people}/>}
                 {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
@@ -73,6 +89,8 @@ export function App1() {
                 {pageName === 'UseRefFun' && <UseRefFun/>}
                 {pageName === 'Old' && <Old x={20}/>}
                 {pageName === 'EnvVars' && <EnvVars/>}
+                {pageName === 'HigherOrderComponents' && <HigherOrderComponents/>}
+                {pageName === 'ErrorBoundaryDemo' && <ErrorBoundaryDemo/>}
                 {pageName === 'ReactUnitTests' && <ReactUnitTests/>}
             </div>
         </ProvideTheme>
