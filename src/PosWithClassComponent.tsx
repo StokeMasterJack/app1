@@ -18,7 +18,8 @@ export function PosWithClassComponent() {
         setStatus(e.target.value);
     };
     return <Co>
-        <Ro style={{alignItems:'center',height:'2rem',margin:'1rem'}}>
+        <h1>Pos with a class-based (old-school) component</h1>
+        <Ro style={{alignItems: 'center', height: '2rem', margin: '1rem'}}>
             <Ro>Status: </Ro>
             <HGap/>
             <select value={status} onChange={onStatusChange}>
@@ -54,11 +55,13 @@ export class PosOld extends React.Component<Props, State> {
     }
 
 
+    //this would be handled in useEffect with a deps: []
     componentDidMount() {
         this.mounted = true;
         this.fetchPos(this.props.status);
     }
 
+    //this would be handled in useEffect with a dep: [props.status]
     componentWillReceiveProps(nextProps: Props) {
         const oldStatus = this.props.status;
         const nextStatus = nextProps.status;
@@ -67,13 +70,10 @@ export class PosOld extends React.Component<Props, State> {
         }
     }
 
+    //this would be handled in the return value (a cleanup function) of useEffect with a deps: []
     componentWillUnmount() {
         this.mounted = false;
     }
-
-    // fetchPosInternal = () => {
-    //     this.fetchPos(this.props.status);
-    // };
 
     fetchPos = async (status: string) => {
         const axiosResponse = await axios.get(`/pos.json?status=${status}`);
@@ -85,8 +85,21 @@ export class PosOld extends React.Component<Props, State> {
 
     render() {
         return <Co>
-
-            <table>
+            <style>{`
+                td{border: 1px solid black}
+                th{border: 1px solid black}
+            `}
+            </style>
+            <table style={{borderCollapse: 'collapse',}}>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>status</th>
+                    <th>vendorId</th>
+                    <th>vendorName</th>
+                    <th>requestDate</th>
+                </tr>
+                </thead>
                 <tbody>
                 {this.state.pos.map(po => <tr key={po.id}>
                     <td>{po.id}</td>

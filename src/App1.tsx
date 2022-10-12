@@ -8,11 +8,12 @@ import {ErrorBoundaryDemo} from './ErrorBoundaryDemo';
 import {HigherOrderComponents} from './HigherOrderComponents';
 import {ListsPage} from './ListsPage';
 import {ListsWithArrowPage} from './ListsWithArrowPage';
-import {PosWithClassComponent} from './PosWithClassComponent';
 import {Page1} from './Page1';
 import {Page2} from './Page2';
 import {PosPage} from './po/PosPage';
+import {PosWithClassComponent} from './PosWithClassComponent';
 import {ReactUnitTests} from './ReactUnitTests';
+import {Ro} from './RLayout';
 import {Co} from './RLayout';
 import {StatelessCounterPage} from './StatelessCounterPage';
 import {ProvideTheme} from './ThemeContext';
@@ -79,19 +80,21 @@ export function App1() {
                     <button onClick={() => onPageChange('ReactUnitTests')} style={{color: pageName === 'ReactUnitTests' ? 'blue' : ''}}>ReactUnitTests</button>
                 </div>
 
-                {pageName === 'Page1' && <Page1/>}
-                {pageName === 'Page2' && <Page2/>}
-                {pageName === 'Lists' && <ListsPage people={people}/>}
-                {pageName === 'ListWithArrow' && <ListsWithArrowPage people={people}/>}
-                {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
-                {pageName === 'Blackjack' && <Blackjack/>}
-                {pageName === 'Pos' && <PosPage/>}
-                {pageName === 'UseRefFun' && <UseRefFun/>}
-                {pageName === 'PosWithClassComponent' && <PosWithClassComponent/>}
-                {pageName === 'EnvVars' && <EnvVars/>}
-                {pageName === 'HigherOrderComponents' && <HigherOrderComponents/>}
-                {pageName === 'ErrorBoundaryDemo' && <ErrorBoundaryDemo/>}
-                {pageName === 'ReactUnitTests' && <ReactUnitTests/>}
+                <Co style={{padding: '1rem'}}>
+                    {pageName === 'Page1' && <Page1/>}
+                    {pageName === 'Page2' && <Page2/>}
+                    {pageName === 'Lists' && <ListsPage people={people}/>}
+                    {pageName === 'ListWithArrow' && <ListsWithArrowPage people={people}/>}
+                    {pageName === 'AppScopeCounter' && <StatelessCounterPage count={appScopeCount} up={up}/>}
+                    {pageName === 'Blackjack' && <Blackjack/>}
+                    {pageName === 'Pos' && <PosPage/>}
+                    {pageName === 'UseRefFun' && <UseRefFun/>}
+                    {pageName === 'PosWithClassComponent' && <PosWithClassComponent/>}
+                    {pageName === 'EnvVars' && <EnvVars/>}
+                    {pageName === 'HigherOrderComponents' && <HigherOrderComponents/>}
+                    {pageName === 'ErrorBoundaryDemo' && <ErrorBoundaryDemo/>}
+                    {pageName === 'ReactUnitTests' && <ReactUnitTests/>}
+                </Co>
             </div>
         </ProvideTheme>
     </ProvideUser>;
@@ -102,9 +105,17 @@ export function App1() {
 export const EnvVars = () => {
     return <Co>
         <h1>EnvVars</h1>
-        <div>{process.env.REACT_APP_NOT_SECRET_CODE}</div>
-        <div>{process.env.REACT_APP_FOO}</div>
-        <div>{process.env.REACT_APP_PROD}</div>
+        <h2>  See these files:</h2>
+        <Co style={{paddingLeft: '1rem'}}>
+            <Ro><code>.env</code></Ro>
+            <Ro><code>.env.development</code></Ro>
+            <Ro><code>.env.production</code></Ro>
+        </Co>
+
+        <h2>Var Values</h2>
+        <div>REACT_APP_NOT_SECRET_CODE: {process.env.REACT_APP_NOT_SECRET_CODE}</div>
+        <div>REACT_APP_FOO: {process.env.REACT_APP_FOO}</div>
+        <div>REACT_APP_PROD: {process.env.REACT_APP_PROD}</div>
     </Co>;
 };
 
