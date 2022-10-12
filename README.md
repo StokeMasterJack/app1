@@ -10,7 +10,7 @@ We added some cool stuff near the end:
 * CRA's Environment Variable feature
 * Higher Order Components
 * React UI Unit Tests (finally finished/fixed these)
-* Cleaned up some ad hoc examples and added them to the App1 menu
+* Cleaned up some ad hoc examples and added them to the App1 menu (had to go vertical)
 
 ![img.png](img.png)
 
