@@ -1,4 +1,6 @@
 import React from 'react';
+import {VGap} from './RLayout';
+import {Ro} from './RLayout';
 import {Co} from './RLayout';
 
 
@@ -24,9 +26,12 @@ export function ReactUnitTests() {
             `}
         </style>
         <h1>React Unit Tests</h1>
-        <p>Be sure to checkout the TypeScript and React unit tests for the Blackjack project in src/blackjack directory</p>
-
-        <table style={{borderCollapse: 'collapse',marginLeft:0,marginRight:'auto'}}>
+        <Ro>Be sure to checkout the React unit tests for the Blackjack project in src/blackjack directory.</Ro>
+        <Ro></Ro>
+        <VGap/>
+        <VGap/>
+        <table style={{borderCollapse: 'collapse', marginLeft: 0, marginRight: 'auto'}}>
+            <caption></caption>
             <tbody>
             <tr>
                 <th>Test</th>
@@ -34,19 +39,19 @@ export function ReactUnitTests() {
             </tr>
             <tr>
                 <td>blackjack.test.ts</td>
-                <td>Unit test of the core business logic in the model classes: <b>Game</b>,  <b>Hand</b>, <b>Deck</b>, <b>Card</b></td>
+                <td>Unit test of the core business logic in the model classes: <b>Game</b>, <b>Hand</b>, <b>Deck</b>, <b>Card</b></td>
             </tr>
             <tr>
                 <td>HandVu.test.tsx</td>
-                <td>Unit test of stateless view (aka presenter) component:  <b>HandVu</b></td>
+                <td>Unit test of stateless view (aka presenter) component: <b>HandVu</b></td>
             </tr>
             <tr>
                 <td>BlackjackVu.test.tsx</td>
-                <td>Unit test of stateless view (aka presenter) component:  <b>BlackjackVu</b></td>
+                <td>Unit test of stateless view (aka presenter) component: <b>BlackjackVu</b></td>
             </tr>
             <tr>
                 <td>Blackjack.test.tsx</td>
-                <td>Unit test of stateful controller (aka container) component:  <b>Blackjack</b></td>
+                <td>Unit test of stateful controller (aka container) component: <b>Blackjack</b></td>
             </tr>
             </tbody>
         </table>
