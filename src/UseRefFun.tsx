@@ -50,16 +50,17 @@ export function UseRefFun() {
     useInterval(1000, () => setCount(prev => prev + 1));
 
     // useInterval(1000, () => setCount(count + 1));
-    return <Co style={{width:'10rem'}}>
-        <input/>
-        <input/>
-        <input/>
-        <FocusInput value={aa} onChange={(e: any) => setAa(e.target.value)}/>
-        <input/>
-        <input/>
-        <input/>
-        <VGap/>
-        count: {count}
+    return <Co style={{width:'20rem'}}>
+        <h1>Fun with useRef hook</h1>
+        <input/><VGap/>
+        <input/><VGap/>
+        <input/><VGap/>
+        <FocusInput value={aa} onChange={(e: any) => setAa(e.target.value)}/><VGap/>
+        <input/><VGap/>
+        <input/><VGap/>
+        <input/><VGap/>
+        <VGap/><VGap/>
+        Interval Count: {count}<VGap/>
     </Co>;
 }
 

@@ -62,3 +62,8 @@ body {
     border-radius: 4px;
     font-size: 0.875rem;
 }
+
+h1{
+    margin-top: 0;
+    font-size: larger;
+}

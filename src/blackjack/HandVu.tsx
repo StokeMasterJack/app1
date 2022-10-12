@@ -3,7 +3,7 @@ import {Co} from '../RLayout';
 import {Hand} from './blackjack';
 
 export const HandVu = ({hand}: { hand: Hand }) => {
-    return <Co style={{margin: '1rem', padding: '.5rem', width: '10rem', height: '10rem', justifyContent: 'space-between', backgroundColor: 'lightblue'}} role="group">
+    return <Co style={{ padding: '.5rem', width: '10rem', height: '10rem', justifyContent: 'space-between', backgroundColor: 'lightblue'}} role="group">
         <div>
             <div style={{fontWeight: 'bold', color: 'red'}} role="contentinfo" data-testid="handName">{hand.name}</div>
             <div style={{}} role="list" data-testid="cardList">

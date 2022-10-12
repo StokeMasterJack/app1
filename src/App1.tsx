@@ -3,6 +3,7 @@
 
 import {useState} from 'react';
 import React from 'react';
+import {AppScopeCounter} from './AppScopeCounter';
 import {Blackjack} from './blackjack/Blackjack';
 import {ErrorBoundaryDemo} from './ErrorBoundaryDemo';
 import {HigherOrderComponents} from './HigherOrderComponents';
@@ -13,9 +14,10 @@ import {Page2} from './Page2';
 import {PosPage} from './po/PosPage';
 import {PosWithClassComponent} from './PosWithClassComponent';
 import {ReactUnitTests} from './ReactUnitTests';
+import {VGap} from './RLayout';
+import {HGap} from './RLayout';
 import {Ro} from './RLayout';
 import {Co} from './RLayout';
-import {AppScopeCounter} from './AppScopeCounter';
 import {ProvideTheme} from './ThemeContext';
 import {Theme} from './ThemeContext';
 import {User} from './UserContext';
@@ -62,25 +64,26 @@ export function App1() {
 
     return <ProvideUser value={user}>
         <ProvideTheme value={theme}>
-            <div style={{margin: '1rem'}}>
+            <Ro style={{margin: '1rem'}}>
 
-                <div style={{display: 'flex'}}>
-                    <button onClick={() => onPageChange('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button>
-                    <button onClick={() => onPageChange('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
-                    <button onClick={() => onPageChange('Lists')} style={{color: pageName === 'Lists' ? 'blue' : ''}}>Lists</button>
-                    <button onClick={() => onPageChange('ListWithArrow')} style={{color: pageName === 'ListWithArrow' ? 'blue' : ''}}>ListsWithArrowFunctions</button>
-                    <button onClick={() => onPageChange('AppScopeCounter')} style={{color: pageName === 'AppScopeCounter' ? 'blue' : ''}}>AppScopeCounter</button>
-                    <button onClick={() => onPageChange('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button>
-                    <button onClick={() => onPageChange('Pos')} style={{color: pageName === 'Pos' ? 'blue' : ''}}>Pos</button>
-                    <button onClick={() => onPageChange('UseRefFun')} style={{color: pageName === 'UseRefFun' ? 'blue' : ''}}>UseRefFun</button>
-                    <button onClick={() => onPageChange('PosWithClassComponent')} style={{color: pageName === 'PosWithClassComponent' ? 'blue' : ''}}>PosWithClassComponent</button>
-                    <button onClick={() => onPageChange('EnvVars')} style={{color: pageName === 'EnvVars' ? 'blue' : ''}}>EnvVars</button>
-                    <button onClick={() => onPageChange('HigherOrderComponents')} style={{color: pageName === 'HigherOrderComponents' ? 'blue' : ''}}>HigherOrderComponents</button>
-                    <button onClick={() => onPageChange('ErrorBoundaryDemo')} style={{color: pageName === 'ErrorBoundaryDemo' ? 'blue' : ''}}>ErrorBoundaryDemo</button>
-                    <button onClick={() => onPageChange('ReactUnitTests')} style={{color: pageName === 'ReactUnitTests' ? 'blue' : ''}}>ReactUnitTests</button>
-                </div>
-
-                <Co style={{padding: '1rem'}}>
+                <Co style={{}}>
+                    <button onClick={() => onPageChange('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button><VGap/>
+                    <button onClick={() => onPageChange('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button><VGap/>
+                    <button onClick={() => onPageChange('Lists')} style={{color: pageName === 'Lists' ? 'blue' : ''}}>Lists</button><VGap/>
+                    <button onClick={() => onPageChange('ListWithArrow')} style={{color: pageName === 'ListWithArrow' ? 'blue' : ''}}>ListsWithArrowFunctions</button><VGap/>
+                    <button onClick={() => onPageChange('AppScopeCounter')} style={{color: pageName === 'AppScopeCounter' ? 'blue' : ''}}>AppScopeCounter</button><VGap/>
+                    <button onClick={() => onPageChange('Blackjack')} style={{color: pageName === 'Blackjack' ? 'blue' : ''}}>Blackjack</button><VGap/>
+                    <button onClick={() => onPageChange('Pos')} style={{color: pageName === 'Pos' ? 'blue' : ''}}>Pos</button><VGap/>
+                    <button onClick={() => onPageChange('UseRefFun')} style={{color: pageName === 'UseRefFun' ? 'blue' : ''}}>UseRefFun</button><VGap/>
+                    <button onClick={() => onPageChange('PosWithClassComponent')} style={{color: pageName === 'PosWithClassComponent' ? 'blue' : ''}}>PosWithClassComponent</button><VGap/>
+                    <button onClick={() => onPageChange('EnvVars')} style={{color: pageName === 'EnvVars' ? 'blue' : ''}}>EnvVars</button><VGap/>
+                    <button onClick={() => onPageChange('HigherOrderComponents')} style={{color: pageName === 'HigherOrderComponents' ? 'blue' : ''}}>HigherOrderComponents</button><VGap/>
+                    <button onClick={() => onPageChange('ErrorBoundaryDemo')} style={{color: pageName === 'ErrorBoundaryDemo' ? 'blue' : ''}}>ErrorBoundaryDemo</button><VGap/>
+                    <button onClick={() => onPageChange('ReactUnitTests')} style={{color: pageName === 'ReactUnitTests' ? 'blue' : ''}}>ReactUnitTests</button><VGap/>
+                </Co>
+                <HGap/>
+                <HGap/>
+                <Co>
                     {pageName === 'Page1' && <Page1/>}
                     {pageName === 'Page2' && <Page2/>}
                     {pageName === 'Lists' && <ListsPage people={people}/>}
@@ -95,7 +98,7 @@ export function App1() {
                     {pageName === 'ErrorBoundaryDemo' && <ErrorBoundaryDemo/>}
                     {pageName === 'ReactUnitTests' && <ReactUnitTests/>}
                 </Co>
-            </div>
+            </Ro>
         </ProvideTheme>
     </ProvideUser>;
 
@@ -105,7 +108,7 @@ export function App1() {
 export const EnvVars = () => {
     return <Co>
         <h1>EnvVars</h1>
-        <h2>  See these files:</h2>
+        <h2> See these files:</h2>
         <Co style={{paddingLeft: '1rem'}}>
             <Ro><code>.env</code></Ro>
             <Ro><code>.env.development</code></Ro>

@@ -12,6 +12,6 @@ export const reducer = (game: Game, action: BjAction): Game => {
 };
 
 export function Blackjack() {
-    const [game, dispatch] = useReducer(reducer, Game.mk({shuffle: false}));
+    const [game, dispatch] = useReducer(reducer, Game.mk({shuffle: true}));
     return <BlackjackVu game={game} dispatch={dispatch}/>;
 }
