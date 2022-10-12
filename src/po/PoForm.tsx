@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useEffect} from 'react';
 import {useState} from 'react';
+import {Co} from '../RLayout';
 import {VGap} from '../RLayout';
 import {Ro} from '../RLayout';
 import {Po} from './PosPage';
@@ -28,9 +29,8 @@ export function PoForm({id, onChange}: { id: string | null, onChange: (po: Po) =
     }, [id]);
 
     const onSave = async () => {
-        const axiosResponse = await axios.put('/po.json', po);
+        await axios.put('/po.json', po);
         onChange(po);
-        // setPo(axiosResponse.data);
     };
     const onCh = (event: any) => {
         const n = event.target.name;
@@ -38,29 +38,38 @@ export function PoForm({id, onChange}: { id: string | null, onChange: (po: Po) =
         setPo({...po, [n]: v});
     };
 
-    return <div style={{backgroundColor: 'lightgray', margin: '2rem', height: '10rem'}}>
-        <Ro>
-            <div style={{width: '10rem'}}>ID:</div>
-            <input name="id" value={po.id ? po.id : 'New'} readOnly={true}/>
-        </Ro>
-        <Ro>
-            <div style={{width: '10rem'}}>Request Date:</div>
-            <input name="requestDate" value={po.requestDate} onChange={onCh}/>
-        </Ro>
-        <Ro>
-            <div style={{width: '10rem'}}>VendorId:</div>
-            <input name="vendorId" value={po.vendorId} onChange={onCh}/>
-        </Ro>
-        <Ro>
-            <div style={{width: '10rem'}}>Vendor Name:</div>
-            <input name="vendorName" value={po.vendorName} readOnly={true}/>
-        </Ro>
-        <Ro>
-            <div style={{width: '10rem'}}>Status:</div>
-            <input name="status" value={po.status} onChange={onCh}/>
-        </Ro>
-        <VGap/>
-        <button onClick={onSave}>Save</button>
-    </div>;
+    return <Co style={{backgroundColor: '', justifyContent: 'flex-start'}}>
+        <Co style={{backgroundColor: 'lightgray', margin: '1rem', padding: '1rem'}}>
+            <Ro>
+                <div style={{width: '10rem'}}>ID:</div>
+                <input name="id" value={po.id ? po.id : 'New'} readOnly={true}/>
+            </Ro>
+            <VGap/>
+            <Ro>
+                <div style={{width: '10rem'}}>Request Date:</div>
+                <input name="requestDate" value={po.requestDate} onChange={onCh}/>
+            </Ro>
+            <VGap/>
+            <Ro>
+                <div style={{width: '10rem'}}>VendorId:</div>
+                <input name="vendorId" value={po.vendorId} onChange={onCh}/>
+            </Ro>
+            <VGap/>
+            <Ro>
+                <div style={{width: '10rem'}}>Vendor Name:</div>
+                <input name="vendorName" value={po.vendorName} readOnly={true}/>
+            </Ro>
+            <VGap/>
+            <Ro>
+                <div style={{width: '10rem'}}>Status:</div>
+                <input name="status" value={po.status} onChange={onCh}/>
+            </Ro>
+            <VGap/>
+            <VGap/>
+            <Ro style={{justifyContent: 'center'}}>
+                <button onClick={onSave}>Save</button>
+            </Ro>
+        </Co>
+    </Co>;
 }
 

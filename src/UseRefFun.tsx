@@ -6,9 +6,9 @@ import {VF} from './util';
 
 
 /*
-state: trigger a render - m in mvc
+state (like the M in MVC): state updates trigger a rerender
 ref: does not trigger a rerender and has a lifetime of the component
- */
+*/
 
 
 export const FocusInput = (props: any) => {
@@ -47,11 +47,13 @@ export function UseRefFun() {
     const [count, setCount] = useState(1);
     const [aa, setAa] = useState('');
     useInterval(1000, () => setCount(prev => prev + 1));
+
+    // useInterval(1000, () => setCount(count + 1));
     return <Co>
         <input/>
         <input/>
         <input/>
-        <FocusInput value={aa} onChange={(e:any) => setAa(e.target.value)}/>
+        <FocusInput value={aa} onChange={(e: any) => setAa(e.target.value)}/>
         <input/>
         <input/>
         <input/>

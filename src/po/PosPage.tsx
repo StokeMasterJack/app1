@@ -89,7 +89,7 @@ export function PosPage() {
     };
 
     return <Ro>
-        <Co>
+        <Co style={{width:'50rem'}}>
             <VGap/>
             <VGap/>
             <Co>

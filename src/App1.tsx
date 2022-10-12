@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// noinspection JSUnusedLocalSymbols
+
 import {useState} from 'react';
 import React from 'react';
-import {Blackjack} from './blackjack/BlackjackVu';
+import {Blackjack} from './blackjack/Blackjack';
 import {ErrorBoundary} from './ErrorBoundary';
 import {ListsPage} from './ListsPage';
 import {ListsWithArrowPage} from './ListsWithArrowPage';
@@ -8,6 +11,8 @@ import {Old} from './Old';
 import {Page1} from './Page1';
 import {Page2} from './Page2';
 import {PosPage} from './po/PosPage';
+import {ReactUnitTests} from './ReactUnitTests';
+import {Co} from './RLayout';
 import {StatelessCounterPage} from './StatelessCounterPage';
 import {ProvideTheme} from './ThemeContext';
 import {Theme} from './ThemeContext';
@@ -16,12 +21,14 @@ import {ProvideUser} from './UserContext';
 import {UseRefFun} from './UseRefFun';
 import {spaRedir} from './util';
 
-export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack' | 'Pos' | 'UseRefFun' | 'Old'
+export type PageName = 'Page1' | 'Page2' | 'Lists' | 'ListWithArrow' | 'AppScopeCounter' | 'Blackjack' | 'Pos' | 'UseRefFun' | 'Old' | 'EnvVars' | 'ReactUnitTests';
 
 
 //use arrows function when passing functions
 export function App1() {
-    // const [pageName, setPageName] = useState<PageName>('Page1');
+
+    const pageName = window.location.pathname.replace('/', '');
+
     const [appScopeCount, setAppScopeCount] = useState(5);
     const [user, setUser] = useState<User | null>({fn: 'dave', ln: 'ford'});
     const [theme, setTheme] = useState<Theme>({color: 'blue'});
@@ -37,15 +44,11 @@ export function App1() {
         spaRedir({url: pageName});
     };
 
-    const pageName = window.location.pathname.replace('/', '');
-    console.log('pageName: ', pageName);
 
     return <ProvideUser value={user}>
         <ProvideTheme value={theme}>
-            <div>{process.env.REACT_APP_NOT_SECRET_CODE}</div>
-            <div>{process.env.REACT_APP_FOO}</div>
-            <div>{process.env.REACT_APP_PROD}</div>
             <div style={{margin: '1rem'}}>
+
                 <div style={{display: 'flex'}}>
                     <button onClick={() => onPageChange('Page1')} style={{color: pageName === 'Page1' ? 'blue' : ''}}>Page 1</button>
                     <button onClick={() => onPageChange('Page2')} style={{color: pageName === 'Page2' ? 'blue' : ''}}>Page 2</button>
@@ -56,6 +59,8 @@ export function App1() {
                     <button onClick={() => onPageChange('Pos')} style={{color: pageName === 'Pos' ? 'blue' : ''}}>Pos</button>
                     <button onClick={() => onPageChange('UseRefFun')} style={{color: pageName === 'UseRefFun' ? 'blue' : ''}}>UseRefFun</button>
                     <button onClick={() => onPageChange('Old')} style={{color: pageName === 'Old' ? 'blue' : ''}}>Old</button>
+                    <button onClick={() => onPageChange('EnvVars')} style={{color: pageName === 'EnvVars' ? 'blue' : ''}}>EnvVars</button>
+                    <button onClick={() => onPageChange('ReactUnitTests')} style={{color: pageName === 'ReactUnitTests' ? 'blue' : ''}}>ReactUnitTests</button>
                 </div>
 
                 {pageName === 'Page1' && <Page1/>}
@@ -66,13 +71,24 @@ export function App1() {
                 {pageName === 'Blackjack' && <Blackjack/>}
                 {pageName === 'Pos' && <PosPage/>}
                 {pageName === 'UseRefFun' && <UseRefFun/>}
-                {pageName === 'Old' && <Old x = {20} />}
+                {pageName === 'Old' && <Old x={20}/>}
+                {pageName === 'EnvVars' && <EnvVars/>}
+                {pageName === 'ReactUnitTests' && <ReactUnitTests/>}
             </div>
         </ProvideTheme>
     </ProvideUser>;
 
 
 }
+
+export const EnvVars = () => {
+    return <Co>
+        <h1>EnvVars</h1>
+        <div>{process.env.REACT_APP_NOT_SECRET_CODE}</div>
+        <div>{process.env.REACT_APP_FOO}</div>
+        <div>{process.env.REACT_APP_PROD}</div>
+    </Co>;
+};
 
 function MyButton(props: { pageName: PageName, selectedPageName: PageName, onPageClick: (pageName: PageName) => void }) {
 

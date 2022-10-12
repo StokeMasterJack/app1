@@ -224,11 +224,11 @@ export class Game {
     // noinspection JSUnusedGlobalSymbols
     update(action: BjAction): Game {
         switch (action.type) {
-            case 'deal':
+            case 'Deal':
                 return this.deal();
-            case 'hit':
+            case 'Hit':
                 return this.hit();
-            case 'stay':
+            case 'Stay':
                 return this.stay();
             default:
                 throw Error();
@@ -261,7 +261,7 @@ export class Game {
 }
 
 export type BjAction = {
-    type: 'deal' | 'hit' | 'stay',
+    type: 'Deal' | 'Hit' | 'Stay',
     payload?: any
 }
 
